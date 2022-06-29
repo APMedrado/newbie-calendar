@@ -1,7 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
-const bodyParser = require('body-parser');
 require('dotenv').config();
 
 const eventRoutes = require('./routes/eventRoutes');
@@ -27,7 +26,6 @@ app.set('view engine', 'ejs');
 // app.use(express.urlencoded({extended: true})); // Pass data into workable format (for POST requests)
 app.use(express.json());
 app.use(morgan('dev')); // Logging requests
-app.use(bodyParser.json());
 app.use((req, res, next) => {
     res.locals.path = req.path;
     next();

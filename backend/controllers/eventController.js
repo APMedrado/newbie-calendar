@@ -4,14 +4,12 @@ const router = require('../routes/eventRoutes');
 
 
 // GET all events
-const event_index = (req, res) => {
-    const events = Event.find({start: {
-        $gte: moment(req.query.start.toDate()),
+const event_index = async (req, res) => {
+    const events = await Event.find({
+        start: {$gte: moment(req.query.start).toDate()},
         end: {$lte: moment(req.query.end).toDate()}
-    }})
-    .then(result => {
-        res.send(events);
     })
+    res.send(events);
 };
 
 // GET single event
